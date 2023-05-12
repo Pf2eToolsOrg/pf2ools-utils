@@ -1,0 +1,121 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "traits.json",
+	"title": "Traits",
+	"description": "The trait data type for Pf2eTools.",
+	"type": "object",
+	"version": "0.0.1",
+	"properties": {
+		"trait": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"source": {
+						"type": "string",
+						"$ref": "utils.json#/definitions/sourceList"
+					},
+					"page": {
+						"type": "integer"
+					},
+					"categories": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"oneOf": [
+								{
+									"enum": [
+										"Action & Ability",
+										"Alignment",
+										"Ancestry & Heritage",
+										"Armor",
+										"Class",
+										"Combat",
+										"Creature",
+										"Creature Type",
+										"Effect",
+										"Energy & Element",
+										"Equipment",
+										"Feat",
+										"Settlement",
+										"General",
+										"Gravity",
+										"Hazard",
+										"Item",
+										"Morphic",
+										"Planar",
+										"Rarity",
+										"School",
+										"Tradition",
+										"Scope",
+										"Size",
+										"Spell",
+										"Time",
+										"Weapon"
+									]
+								},
+								{
+									"enum": [
+										"_alignAbv"
+									]
+								}
+							]
+						}
+					},
+					"otherSources": {
+						"$ref": "utils.json#/definitions/otherSources"
+					},
+					"implies": {
+						"$ref": "utils.json#/definitions/implies"
+					},
+					"_data": {
+						"type": "object",
+						"properties": {
+							"school": {
+								"type": "object",
+								"properties": {
+									"short": {
+										"type": "string"
+									},
+									"color": {
+										"type": "string",
+										"pattern": "^([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$",
+										"description": "HTML hex color code this school should use when displayed in lists, e.g. 'ff00ff'"
+									}
+								},
+								"required": [
+									"short",
+									"color"
+								],
+								"additionalProperties": false
+							}
+						},
+						"minProperties": 1,
+						"additionalProperties": false
+					},
+					"entries": {
+						"type": "array",
+						"items": {
+							"$ref": "entry.json"
+						}
+					}
+				},
+				"additionalProperties": false,
+				"required": [
+					"name",
+					"source",
+					"entries",
+					"page"
+				]
+			},
+			"uniqueItems": true
+		}
+	},
+	"required": [
+		"trait"
+	],
+	"additionalProperties": false
+}

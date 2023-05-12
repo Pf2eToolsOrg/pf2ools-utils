@@ -1,72 +1,185 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "$id": "index.json",
-    "title": "Indexes",
-    "description": "Schema for the auto-generated index for PF2eTools. Mostly for reference's sake.",
-    "type": "object",
-    "version": "0.0.1",
-    "properties": {
-        "x": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "n": {
-                        "type": "string",
-                        "description": "Display Name"
-                    },
-                    "b": {
-                        "type": "string",
-                        "description": "Optional; name is used if not specified"
-                    },
-                    "s": {
-                        "type": "integer",
-                        "description": "Source ID, see `m.s`"
-                    },
-                    "u": {
-                        "type": "string",
-                        "description": "hash"
-                    },
-                    "uh": {
-                        "type": "string",
-                        "description": "Optional; hash for href if the link should be different from the hover lookup hash."
-                    },
-                    "p": {
-                        "type": "integer",
-                        "description": "page"
-                    },
-                    "h": {
-                        "type": "integer",
-                        "description": "if isHover enabled, otherwise undefined"
-                    },
-                    "c": {
-                        "type": "integer",
-                        "description": "category ID"
-                    },
-                    "id": {
-                        "type": "integer",
-                        "description": "index ID"
-                    }
-                }
-            }
-        },
-        "m": {
-            "type": "object",
-            "properties": {
-                "s": {
-                    "type": "object",
-                    "patternProperties": {
-                        ".*": {
-                            "type": "integer"
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "additionalProperties": false,
-    "required": [
-        "x",
-        "m"
-    ]
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"version": "0.0.1",
+	"type": "object",
+	"$id": "schema.json",
+	"title": "Schema",
+	"description": "Schema for Pf2eTools. Should include arrays titled similarly to the main site data, e.g. `spell` or `class`. Requires `_meta` if made as homebrew to function.",
+	"properties": {
+		"_meta": {
+			"$ref": "_meta.json"
+		},
+		"$schema": {
+			"description": "Relative or absolute path to the schema to apply to this document.",
+			"type": "string",
+			"examples": [
+				"../test/schema-template/schema.json",
+				"https://raw.githubusercontent.com/Pf2eTools/Pf2eTools.github.io/master/test/schema-template/schema.json"
+			]
+		},
+		"source": {
+			"$ref": "source.json#/properties/source"
+		},
+		"changelog": {
+			"$ref": "changelog.json#/properties/changelog"
+		},
+		"renderdemo": {
+			"$ref": "renderdemo.json#/properties/renderdemo"
+		},
+		"creatureTemplate": {
+			"$ref": "creatureTemplates.json#/properties/creatureTemplate"
+		},
+		"creatureTemplateFluff": {
+			"$ref": "fluff-creatureTemplates.json#/properties/creatureTemplateFluff"
+		},
+		"variantrule": {
+			"$ref": "variantrules.json#/properties/variantrule"
+		},
+		"table": {
+			"$ref": "tables.json#/properties/table"
+		},
+		"tableGroup": {
+			"type": "array"
+		},
+		"data": {
+			"$ref": "adventureBooks.json#/properties/data"
+		},
+		"book": {
+			"$ref": "books.json#/properties/book"
+		},
+		"bookData": {
+			"$ref": "adventureBooks.json#/properties/book"
+		},
+		"adventure": {
+			"$ref": "adventures.json#/properties/adventure"
+		},
+		"adventureData": {
+			"$ref": "adventureBooks.json#/properties/adventure"
+		},
+		"ancestry": {
+			"$ref": "ancestries.json#/properties/ancestry"
+		},
+		"versatileHeritage": {
+			"$ref": "versatileHeritages.json#/properties/versatileHeritage"
+		},
+		"background": {
+			"$ref": "backgrounds.json#/properties/background"
+		},
+		"class": {
+			"type": "array"
+		},
+		"subclass": {
+			"type": "array"
+		},
+		"classFeature": {
+			"type": "array"
+		},
+		"subclassFeature": {
+			"type": "array"
+		},
+		"archetype": {
+			"$ref": "archetypes.json#/properties/archetype"
+		},
+		"feat": {
+			"$ref": "feats.json#/properties/feat"
+		},
+		"companion": {
+			"$ref": "companionsFamiliars.json#/properties/companion"
+		},
+		"companionAbility": {
+			"$ref": "companionsFamiliars.json#/properties/companionAbility"
+		},
+		"familiar": {
+			"$ref": "companionsFamiliars.json#/properties/familiar"
+		},
+		"familiarAbility": {
+			"$ref": "companionsFamiliars.json#/properties/familiarAbility"
+		},
+		"eidolon": {
+			"$ref": "companionsFamiliars.json#/properties/eidolon"
+		},
+		"hazard": {
+			"$ref": "hazards.json#/properties/hazard"
+		},
+		"action": {
+			"$ref": "actions.json#/properties/action"
+		},
+		"creature": {
+			"$ref": "bestiary.json#/properties/creature"
+		},
+		"creatureFluff": {
+			"type": "array"
+		},
+		"condition": {
+			"$ref": "conditions.json#/properties/condition"
+		},
+		"item": {
+			"$ref": "items.json#/properties/item"
+		},
+		"itemFluff": {
+			"$ref": "fluff-items.json#/properties/itemFluff"
+		},
+		"baseitem": {
+			"$ref": "items.json#/properties/item"
+		},
+		"spell": {
+			"$ref": "spells.json#/properties/spell"
+		},
+		"disease": {
+			"$ref": "diseases.json#/properties/disease"
+		},
+		"curse": {
+			"$ref": "diseases.json#/properties/disease"
+		},
+		"ability": {
+			"$ref": "abilities.json#/properties/ability"
+		},
+		"deity": {
+			"$ref": "deities.json#/properties/deity"
+		},
+		"deityFluff": {
+			"$ref": "fluff-deities.json#/properties/deityFluff"
+		},
+		"language": {
+			"$ref": "languages.json#/properties/language"
+		},
+		"place": {
+			"$ref": "places.json#/properties/place"
+		},
+		"ritual": {
+			"$ref": "rituals.json#/properties/ritual"
+		},
+		"vehicle": {
+			"$ref": "vehicles.json#/properties/vehicle"
+		},
+		"trait": {
+			"$ref": "traits.json#/properties/trait"
+		},
+		"group": {
+			"$ref": "groups.json#/properties/group"
+		},
+		"domain": {
+			"$ref": "domains.json#/properties/domain"
+		},
+		"organization": {
+			"$ref": "organizations.json#/properties/organization"
+		},
+		"organizationFluff": {
+			"$ref": "fluff-organizations.json#/properties/organizationFluff"
+		},
+		"optionalfeature": {
+			"$ref": "optionalFeatures.json#/properties/optionalFeature"
+		},
+		"skill": {
+			"$ref": "skills.json#/properties/skill"
+		},
+		"quickRules": {
+			"$ref": "quickRules.json#/properties/quickRules"
+		},
+		"event": {
+			"$ref": "events.json#/properties/event"
+		}
+	},
+	"additionalProperties": false,
+	"minProperties": 1
 }
