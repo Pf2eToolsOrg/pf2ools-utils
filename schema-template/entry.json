@@ -32,12 +32,13 @@
 			}
 		},
 		"mediaHref": {
-			"oneOf": [
-				{
-					"type": "object",
+			"type": "object",
 					"properties": {
 						"type": {
-							"const": "internal"
+							"enum": [
+								"internal",
+								"external"
+							]
 						},
 						"path": {
 							"type": "string"
@@ -47,23 +48,6 @@
 						"path"
 					],
 					"additionalProperties": false
-				},
-				{
-					"type": "object",
-					"properties": {
-						"type": {
-							"const": "external"
-						},
-						"url": {
-							"type": "string"
-						}
-					},
-					"required": [
-						"url"
-					],
-					"additionalProperties": false
-				}
-			]
 		},
 		"entry": {
 			"type": "object",

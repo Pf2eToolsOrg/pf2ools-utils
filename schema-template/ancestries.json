@@ -64,8 +64,18 @@
 								}
 							]
 						},
-						"minItems": 1,
-						"uniqueItems": true
+						"minItems": 1
+					},
+					"languageNote": {
+						"$ref": "entry.json"
+					},
+					"tags": {
+						"type": "array",
+						"items": {
+							"enum": [
+								"unarmedAttack"
+							]
+						}
 					},
 					"flaws": {
 						"type": "array",
@@ -78,14 +88,17 @@
 					"languages": {
 						"type": "array",
 						"items": {
-							"type": "string"
+							"type": "string",
+							"$ref": "utils.json#/definitions/languages",
+							"pattern": "^((?!Additional languages).)*$"
 						},
 						"minItems": 1
 					},
 					"additionalLanguages": {
 						"type": "array",
 						"items": {
-							"type": "string"
+							"type": "string",
+							"$ref": "utils.json#/definitions/languages"
 						},
 						"minItems": 1
 					},
@@ -101,43 +114,17 @@
 					"features": {
 						"type": "array",
 						"items": {
-							"type": "object",
 							"properties": {
-								"name": {
-									"type": "string"
-								},
-								"entries": {
-									"type": "array",
-									"items": {
-										"$ref": "entry.json"
-									},
-									"minItems": 1
+								"unarmedAttack": {
+									"type": "boolean"
 								}
 							},
-							"additionalProperties": false,
-							"required": [
-								"name",
-								"entries"
-							]
+							"$ref": "entry.json"
 						},
 						"minItems": 1,
 						"uniqueItems": true
 					},
 					"entries": {
-						"type": "array",
-						"items": {
-							"$ref": "entry.json"
-						},
-						"minItems": 1
-					},
-					"info": {
-						"type": "array",
-						"items": {
-							"$ref": "entry.json"
-						},
-						"minItems": 1
-					},
-					"heritageInfo": {
 						"type": "array",
 						"items": {
 							"$ref": "entry.json"
@@ -186,13 +173,7 @@
 									"minItems": 1
 								},
 								"modif": {
-									"additionalProperties": false,
-									"type": "object",
-									"properties": {
-										"feats": {
-											"type": "array"
-										}
-									}
+									"$ref": "utils.json#/definitions/modif"
 								}
 							},
 							"additionalProperties": false,
@@ -206,22 +187,13 @@
 						"minItems": 1,
 						"uniqueItems": true
 					},
-					"summary": {
-						"type": "object",
-						"properties": {
-							"images": {
-								"type": "array",
-								"items": {
-									"type": "string"
-								},
-								"minItems": 1
-							},
-							"text": {
-								"type": "string"
-							}
+					"images": {
+						"type": "array",
+						"items": {
+							"$ref": "entry.json/#/definitions/entryImage"
 						},
-						"additionalProperties": false,
-						"minProperties": 1
+						"minItems": 1,
+						"uniqueItems": true
 					}
 				},
 				"additionalProperties": false,

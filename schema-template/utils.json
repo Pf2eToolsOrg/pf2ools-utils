@@ -9,6 +9,162 @@
 		"sourceList": {
 			"$ref": "_generated/sources.json#/definitions/sourceList"
 		},
+		"modif": {
+			"additionalProperties": false,
+			"type": "object",
+			"properties": {
+				"resistance": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"modifier": {
+								"oneOf": [
+									{
+										"type": "integer"
+									},
+									{
+										"type": "string",
+										"enum": [
+											"level",
+											"half-level"
+										]
+									}
+								]
+							},
+							"type": {
+								"$ref": "#/definitions/damageType"
+							},
+							"traits": {
+								"type": "array",
+								"items": {
+									"$ref": "#/definitions/anyTrait"
+								}
+							}
+						},
+						"additionalProperties": false
+					}
+				},
+				"bonus": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"type": {
+								"type": "string",
+								"enum": [
+									"circumstance",
+									"status",
+									"item",
+									"untyped"
+								]
+							},
+							"modifier": {
+								"type": "integer"
+							},
+							"skills": {
+								"type": "array",
+								"items": {
+									"$ref": "#/definitions/skillName"
+								}
+							},
+							"actions": {
+								"type": "array",
+								"items": {
+									"description": "The action the bonus applies to. TODO: Check against actions list.",
+									"type": "string"
+								}
+							},
+							"saves": {
+								"type": "array",
+								"items": {
+									"type": "string",
+									"enum": [
+										"fortitude",
+										"reflex",
+										"will",
+										"all"
+									]
+								}
+							},
+							"traits": {
+								"type": "array",
+								"items": {
+									"$ref": "#/definitions/anyTrait"
+								}
+							}
+						},
+						"additionalProperties": false
+					}
+				},
+				"hp": {
+					"type": "object",
+					"properties": {
+						"ancestry": {
+							"description": "Overrides ancestry HP.",
+							"type": "integer"
+						},
+						"flat": {
+							"type": "integer"
+						},
+						"per": {
+							"type": "integer"
+						}
+					},
+					"additionalProperties": false
+				},
+				"feats": {
+					"description": "The feat to grant. TODO: Check against feats list.",
+					"type": "array"
+				},
+				"environmental": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": [
+							"heat",
+							"cold"
+						]
+					}
+				},
+				"skills": {
+					"type": "object",
+					"patternProperties": {
+						"trained|expert|master|legendary": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/skillName"
+							}
+						}
+					},
+					"additionalProperties": false
+				},
+				"action": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"type": {
+								"type": "string",
+								"enum": [
+									"modifier",
+									"add"
+								]
+							},
+							"action": {
+								"description": "The action itself. TODO: Check against actions list.",
+								"type": "string"
+							},
+							"entry": {
+								"description": "A summary of the action or modification to one.",
+								"type": "string"
+							}
+						},
+						"additionalProperties": false
+					}
+				}
+			}
+		},
 		"alignmentTraits": {
 			"type": "string",
 			"anyOf": [
@@ -98,7 +254,7 @@
 				},
 				{
 					"properties": {
-						"freq": {
+						"number": {
 							"$comment": "In code return \"Once\" if =1, \"Twice\" if =2, and \"`n` times\" otherwise.",
 							"description": "How frequent it is; once, twice etc.",
 							"type": "integer",
@@ -151,13 +307,13 @@
 					"oneOf": [
 						{
 							"required": [
-								"freq",
+								"number",
 								"unit"
 							]
 						},
 						{
 							"required": [
-								"freq",
+								"number",
 								"customUnit"
 							]
 						}
@@ -1537,12 +1693,7 @@
 				"traits": {
 					"type": "array",
 					"items": {
-						"type": "string",
-						"anyOf": [
-							{
-								"$ref": "#/definitions/anyTrait"
-							}
-						]
+						"$ref": "#/definitions/anyTrait"
 					},
 					"minItems": 1
 				},
@@ -1646,7 +1797,6 @@
 				"traits": {
 					"type": "array",
 					"items": {
-						"type": "string",
 						"$ref": "#/definitions/anyTrait"
 					},
 					"minItems": 1
@@ -1773,12 +1923,7 @@
 				"traits": {
 					"type": "array",
 					"items": {
-						"type": "string",
-						"anyOf": [
-							{
-								"$ref": "#/definitions/anyTrait"
-							}
-						]
+						"$ref": "#/definitions/anyTrait"
 					},
 					"minItems": 1
 				},
