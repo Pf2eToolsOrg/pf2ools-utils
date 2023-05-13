@@ -67,7 +67,7 @@
 						"minItems": 1,
 						"uniqueItems": true
 					},
-					"flaw": {
+					"flaws": {
 						"type": "array",
 						"items": {
 							"$ref": "utils.json#/definitions/ability"
@@ -76,6 +76,13 @@
 						"uniqueItems": true
 					},
 					"languages": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"minItems": 1
+					},
+					"additionalLanguages": {
 						"type": "array",
 						"items": {
 							"type": "string"
@@ -116,7 +123,7 @@
 						"minItems": 1,
 						"uniqueItems": true
 					},
-					"flavor": {
+					"entries": {
 						"type": "array",
 						"items": {
 							"$ref": "entry.json"
@@ -177,6 +184,15 @@
 										"$ref": "entry.json"
 									},
 									"minItems": 1
+								},
+								"modif": {
+									"additionalProperties": false,
+									"type": "object",
+									"properties": {
+										"feats": {
+											"type": "array"
+										}
+									}
 								}
 							},
 							"additionalProperties": false,
