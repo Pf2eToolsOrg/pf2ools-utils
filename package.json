@@ -1,0 +1,29 @@
+{
+  "name": "pf2ools-schema",
+  "version": "0.0.1",
+  "description": "Schema and other data validation utilities for PF2ools.",
+  "type": "module",
+  "scripts": {
+    "test": "node test.js",
+    "build": "node scripts/compile-languages-schema.js && node scripts/compile-sources-schema.js && node scripts/compile-traits-schema.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pf2eToolsOrg/pf2ools-utils.git"
+  },
+  "keywords": [
+    "pf2e",
+    "pf2ools",
+    "utils",
+    "data-validation"
+  ],
+  "author": "MrVauxs",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Pf2eToolsOrg/pf2ools-utils/issues"
+  },
+  "homepage": "https://github.com/Pf2eToolsOrg/pf2ools-utils#readme",
+  "dependencies": {
+    "ajv": "^8.12.0"
+  }
+}
